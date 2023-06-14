@@ -25,10 +25,7 @@ class Monitor:
     def __init__(self, url: str, **kwargs):
         """Construct a new interface with a monitor storage.
         """
-        if url.startswith('http://') or url.startswith('https://'):
-            self.__dial = Remote(url, **kwargs)
-        else:
-            self.__dial = Local(url, **kwargs)
+        self.__dial = Remote(url, **kwargs) if url.startswith('http://') or url.startswith('https://') else Local(url, **kwargs)
 
     def count_components(self) -> int:
         """Count total number of non empty components.
